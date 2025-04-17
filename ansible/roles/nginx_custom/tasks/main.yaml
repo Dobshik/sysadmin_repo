@@ -1,0 +1,20 @@
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: present
+    update_cache: true
+
+- name: Create custom index.html
+  copy:
+    dest: /var/www/html/index.html
+    content: |
+      <body>
+      <p><center><b>Hello from {{ inventory_hostname }}!</b></center></p>
+      </body>
+
+- name: Ensure Nginx is started and enabled
+  service:
+    name: nginx
+    state: started
+    enabled: true

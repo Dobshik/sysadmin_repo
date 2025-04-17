@@ -1,0 +1,15 @@
+---
+- name: Настройка стандартных пакетов и hostname
+  hosts: all
+  roles:
+    - common
+
+- name: Установка кастомных Nginx-серверов
+  hosts: vm-2:vm-3
+  roles:
+    - nginx_custom
+
+- name: Настройка проксирующего сервера
+  hosts: vm-1
+  roles:
+    - nginx_proxy

@@ -1,0 +1,11 @@
+upstream backend {
+    server {{ hostvars['vm-2'].ansible_host }};
+    server {{ hostvars['vm-3'].ansible_host }};
+}
+
+server {
+    listen 3000;
+    location / {
+        proxy_pass http://backend;
+    }
+}
